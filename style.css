@@ -1,80 +1,173 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-
-    background: #548687;
+    background: linear-gradient(135deg, #243B55, #141E30);
+    color: #fff;
+    font-family: 'Segoe UI', sans-serif;
     text-align: center;
+}
 
+h1 {
+    margin-top: 2rem;
+    font-size: 3rem;
+    color: #ffffff;
+    text-shadow: 2px 2px 10px #00fff7;
 }
 
 .container {
-
     height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1.5vmin;
 }
+
 .game {
-    height: 60.vmin;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.2vmin;
     width: 60vmin;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5vmin;
+    height: 60vmin;
 }
+
 .box {
-    height:18vmin;
-    width: 18vmin;
-    text-align: center;
-    border-radius: 1.5vmin;
-    border: none;
-    box-shadow: 0 0 1.5rem rgb(211, 152, 109) ;
-    color: rgb(62, 143, 165);
-    font-size: 7.5vmin;
-
-}
-#reset-btn{
-    padding: 1.2rem;
-    color: aquamarine;
-    border-style: dotted;
-    
-    font-size: 1.75rem;
-    background-color: #39b6ba;
-    border-radius: 7vmin;
-}
-
-#new-Btn {
-
-    padding: 1rem;
-    font-size: 1.25rem;
-    background-color: rgb(190, 203, 196);
-    color: #1d3202;
+    background: rgba(255, 255, 255, 0.1);
+    border: 2px solid #00fff7;
     border-radius: 1rem;
-    border:none;
-  
+    font-size: 6vmin;
+    color: #00fff7;
+    cursor: pointer;
+    transition: transform 0.3s ease, background 0.3s;
 }
 
-  #msg{
-    color: aquamarine;
-    font-size: 5vmin;
-    
-  }
+.box:hover {
+    background: rgba(0, 255, 247, 0.2);
+    transform: scale(1.05);
+}
 
-  .msg-container{
-    color: aliceblue;
-    height:100vmin;
-    display: flex;
+#reset-btn,
+#new-Btn {
+    padding: 1rem 2rem;
+    font-size: 1.5rem;
+    border: none;
+    margin: 1rem;
+    border-radius: 2rem;
+    cursor: pointer;
+    background-color: #00fff7;
+    color: #141E30;
+    font-weight: bold;
+    box-shadow: 0 0 10px #00fff7;
+    transition: background 0.3s;
+}
+
+#reset-btn:hover,
+#new-Btn:hover {
+    background-color: #00baba;
+}
+
+#msg {
+    font-size: 3rem;
+    color: #00fff7;
+    text-shadow: 1px 1px 5px #00fff7;
+}
+
+.msg-container {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0,0,0,0.8);
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    gap: 4rem;
+    gap: 2rem;
+    z-index: 10;
+}
 
-  }
-  .hide{
-    display: none;
-  }
+.show {
+    display: flex;
+}
+
+.player-info {
+    margin: 1rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.player-info input {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    outline: none;
+}
+
+#startGameBtn {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: #00fff7;
+    color: #141E30;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#turn-indicator {
+    font-size: 1.5rem;
+    margin: 1rem;
+    color: #00fff7;
+}
+
+.mode-select {
+    margin: 1rem;
+    font-size: 1.2rem;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    color: #00fff7;
+}
+.mode-select input {
+    margin-right: 0.5rem;
+}
+/* Box Pop Animation */
+@keyframes pop {
+  0% { transform: scale(0.7); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.box.played {
+  animation: pop 0.2s ease;
+}
+
+/* Winning Glow */
+@keyframes glow {
+  0%, 100% { background-color: #00fff7; }
+  50% { background-color: #02a5a9; }
+}
+.box.winner {
+  animation: glow 1s ease infinite;
+}
+
+/* Message Fade-in */
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+.msg-container.show {
+  animation: fadeIn 0.6s ease;
+}
+
+/* Turn indicator slide/pulse */
+#turn-indicator {
+  animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: translateY(0); }
+  50% { opacity: 0.7; transform: translateY(-4px); }
+}
