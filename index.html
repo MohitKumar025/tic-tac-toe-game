@@ -1,23 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>TIC TAC TOE Game</title>
-        <link rel="stylesheet" href="style.css">
-    </head>
-    <body>
-        <div class="msg-container hide"> 
-            <p id="msg">Winneer</p>
-        </div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel= "stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+      
+    <h1>Tic Tac Toe</h1>
+    <div class="msg-container"> 
+        <p id="msg">Winner</p>
         <button id="new-Btn">New Game</button>
-        
-        <main>
-            
-            <h1>Tic Tac Toe</h1>
-       <div class="container"> 
+    </div>
+
+    <!-- Game Mode Selection -->
+    <div class="mode-select">
+        <label><input type="radio" name="mode" value="single" checked> Single Player</label>
+        <label><input type="radio" name="mode" value="multi"> Multiplayer</label>
+    </div>
+
+    <!-- Player Name Inputs -->
+    <div class="player-info">
+        <input type="text" id="playerX" placeholder="Your Name (X)">
+        <input type="text" id="playerO" placeholder="Opponent Name (O)">
+        <button id="startGameBtn">Start Game</button>
+    </div>
+
+    <h2 id="turn-indicator"></h2>
+
+    <div class="container"> 
         <div class="game">
-            
             <button class="box"></button>
             <button class="box"></button>
             <button class="box"></button>
@@ -26,15 +40,16 @@
             <button class="box"></button>
             <button class="box"></button>
             <button class="box"></button>
-            <button class="box"> </button>
-            
+            <button class="box"></button>
         </div>
     </div>
-    <button id="reset-btn">reset</button>
-    </main>
-    
-    
 
-<script src="game.js"></script>
+    <button id="reset-btn">Reset</button>
+</main>
+
+   
+
+    <script src="game.js"></script>
 </body>
+
 </html>
